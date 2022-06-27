@@ -22,7 +22,7 @@ static const unsigned int gappiv = 20; /* vert inner gap between windows */
 static const unsigned int gappoh =
     15; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov =
-    30; /* vert outer gap between windows and screen edge */
+    20; /* vert outer gap between windows and screen edge */
 static const int smartgaps_fact =
     1; /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer
           gaps */
@@ -60,7 +60,7 @@ static const int toptab = False;         /* False means bottom tab bar */
 #endif                                   // TAB_PATCH
 #if BAR_HEIGHT_PATCH
 static const int bar_height =
-    30; /* 0 means derive from font, >= 1 explicit height */
+    25; /* 0 means derive from font, >= 1 explicit height */
 #endif  // BAR_HEIGHT_PATCH
 #if BAR_PADDING_PATCH
 static const int vertpad = 10; /* vertical padding of bar */
@@ -159,15 +159,15 @@ static const char dmenufont[] = "monospace:size=10";
 
 static char c000000[] = "#000000"; // placeholder value
 
-static char normfgcolor[] = "#E5E9F0";
-static char normbgcolor[] = "#2E3440";
-static char normbordercolor[] = "#5E81AC";
-static char normfloatcolor[] = "#5E81AC";
+static char normfgcolor[] = "#5e81ac";
+static char normbgcolor[] = "#5e81ac";
+static char normbordercolor[] = "#5e81ac";
+static char normfloatcolor[] = "#81a1c1";
 
-static char selfgcolor[] = "#E5E9F0";
-static char selbgcolor[] = "#2E3440";
-static char selbordercolor[] = "#5E81AC";
-static char selfloatcolor[] = "#005577";
+static char selfgcolor[] = "#5e81ac";
+static char selbgcolor[] = "#5e81ac";
+static char selbordercolor[] = "#5e81ac";
+static char selfloatcolor[] = "#5e81ac";
 
 static char titlenormfgcolor[] = "#E5E9F0";
 static char titlenormbgcolor[] = "#2E3440";
@@ -175,7 +175,7 @@ static char titlenormbordercolor[] = "#444444";
 static char titlenormfloatcolor[] = "#db8fd9";
 
 static char titleselfgcolor[] = "#E5E9F0";
-static char titleselbgcolor[] = "#2E3440";
+static char titleselbgcolor[] = "#5E81AC";
 static char titleselbordercolor[] = "#2E3440";
 static char titleselfloatcolor[] = "#2E3440";
 
@@ -194,10 +194,10 @@ static char hidselfgcolor[] = "#227799";
 static char hidnormbgcolor[] = "#222222";
 static char hidselbgcolor[] = "#222222";
 
-static char urgfgcolor[] = "#bbbbbb";
-static char urgbgcolor[] = "#222222";
-static char urgbordercolor[] = "#ff0000";
-static char urgfloatcolor[] = "#db8fd9";
+static char urgfgcolor[] = "#eceff4";
+static char urgbgcolor[] = "#bf616a";
+static char urgbordercolor[] = "#bf616a";
+static char urgfloatcolor[] = "#bf616a";
 
 #if BAR_FLEXWINTITLE_PATCH
 static char normTTBbgcolor[] = "#330000";
@@ -952,7 +952,7 @@ static const char *dmenucmd[] = {"dmenu_run",
                                  topbar ? NULL : "-b",
 #endif // BAR_DMENUMATCHTOP_PATCH
                                  NULL};
-static const char *termcmd[] = {"st", NULL};
+static const char *termcmd[] = {"kitty", NULL};
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -1208,7 +1208,7 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_t, unfloatvisible, {.v = &layouts[0]}},
 #endif // UNFLOATVISIBLE_PATCH
 #if TOGGLEFULLSCREEN_PATCH
-    {MODKEY, XK_y, togglefullscreen, {0}},
+    {MODKEY | ShiftMask, XK_f, togglefullscreen, {0}},
 #endif // TOGGLEFULLSCREEN_PATCH
 #if !FAKEFULLSCREEN_PATCH && FAKEFULLSCREEN_CLIENT_PATCH
     {MODKEY | ShiftMask, XK_y, togglefakefullscreen, {0}},

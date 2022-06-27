@@ -59,7 +59,7 @@
  * the centeredwindowname patch.
  * https://dwm.suckless.org/patches/fancybar/
  */
-#define BAR_FANCYBAR_PATCH 0
+#define BAR_FANCYBAR_PATCH 1
 
 /* Being an evolution of the bartabgroups patch the flexwintitle patch
  * specifically taps into the many layout options that flextile-deluxe offers to
@@ -352,7 +352,7 @@
 /* This patch adds vertical and horizontal space between the statusbar and the
  * edge of the screen. https://dwm.suckless.org/patches/barpadding/
  */
-#define BAR_PADDING_PATCH 1
+#define BAR_PADDING_PATCH 0
 
 /* Same as barpadding patch but specifically tailored for the vanitygaps patch
  * in that the outer bar padding is derived from the vanitygaps settings. In
@@ -546,7 +546,7 @@
  * (with "Use system title bar and borders" turned off) or vlc in fullscreen
  * mode. https://dwm.suckless.org/patches/decoration_hints/
  */
-#define DECORATION_HINTS_PATCH 0
+#define DECORATION_HINTS_PATCH 1
 
 /* This feature distributes all clients on the current monitor evenly across all
  * tags. It is a variant of the reorganizetags patch.
@@ -662,7 +662,7 @@
  * When pressed again it shows the bar and restores the layout that was active
  * before going fullscreen. https://dwm.suckless.org/patches/fullscreen/
  */
-#define FULLSCREEN_PATCH 1
+#define FULLSCREEN_PATCH 0
 
 /* This patch provides a keybinding to rotate all clients in the currently
  * selected area (master or stack) without affecting the other area.
@@ -837,7 +837,7 @@
  * monitor (default).
  * https://dwm.suckless.org/patches/pertag/
  */
-#define PERTAG_PATCH 0
+#define PERTAG_PATCH 1
 
 /* Option to store gaps on a per tag basis rather than on a per monitor basis.
  * Depends on both pertag and vanitygaps patches being enabled.
@@ -955,7 +955,7 @@
 /* Allows restarting dwm without the dependency of an external script.
  * https://dwm.suckless.org/patches/selfrestart/
  */
-#define SELFRESTART_PATCH 0
+#define SELFRESTART_PATCH 1
 
 /* This patch allow clients to keep focus when being sent to another monitor.
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-sendmon_keepfocus-6.2.diff
@@ -1176,7 +1176,7 @@
  * key.
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-togglefullscreen-6.2.diff
  */
-#define TOGGLEFULLSCREEN_PATCH 0
+#define TOGGLEFULLSCREEN_PATCH 1
 
 /* Minor patch that lets you use the same keyboard shortcut to toggle to the
  * previous layout if the designated layout is already active.
@@ -1228,7 +1228,7 @@
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-vanitygaps-6.2.diff
  * https://github.com/bakkeby/patches/blob/master/dwm/dwm-cfacts-vanitygaps-6.2.diff
  */
-#define VANITYGAPS_PATCH 1
+#define VANITYGAPS_PATCH 0
 
 /* This patch adds outer gaps for the monocle layout.
  * Most gaps patches tries to avoid gaps on the monocle layout, as it is often

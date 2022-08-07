@@ -505,9 +505,11 @@ static const Rule rules[] = {
                 RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
                     RULE(.class = "Gimp", .tags = 1 << 4)
                         RULE(.class = "Firefox", .tags = 1 << 7)
+                            RULE(.class = "mpv", .isfloating = 1)
+                              RULE(.class = "conky", .isfloating = 1)
 #if SCRATCHPADS_PATCH
-                            RULE(.instance = "spterm", .tags = SPTAG(0),
-                                 .isfloating = 1)
+                                RULE(.instance = "spterm", .tags = SPTAG(0),
+                                     .isfloating = 1)
 #endif // SCRATCHPADS_PATCH
 };
 
@@ -981,9 +983,37 @@ static Key on_empty_keys[] = {
 };
 #endif // ON_EMPTY_KEYS_PATCH
 
+static const char *term[] = {"kitty", NULL};
+static const char *flame[] = {"maim", "-s", "~/Pictures/$(date +%m-%d-%y-%M-%S).png", NULL};
+static const char *dmenu[] = {"dmenu_run", NULL};
+static const char *slock[] = {"slock", NULL};
+static const char *dict[] = {"dict", NULL};
+static const char *mute[] = {"pactl","set-source-mute","@DEFAULT_SOURCE@","toggle", NULL};
+static const char *mutevol[] = {"pactl","set-sink-mute","@DEFAULT_SINK@","toggle", NULL};
+static const char *volup[] = {"pactl","set-sink-volume","@DEFAULT_SINK@","-5%", NULL};
+static const char *voldown[] = {"pactl","set-sink-volume","@DEFAULT_SINK@","+5%", NULL};
+static const char *prev[] = {"mpc", "prev", NULL};
+static const char *toggle[] = {"mpc", "toggle", NULL};
+static const char *next[] = {"mpc", "next", NULL};
+static const char *web[] = {"librewolf", NULL};
+
 static Key keys[] = {
 /* modifier                     key            function                argument
  */
+  {MODKEY, XK_Return, spawn, {.v = term}},
+  {MODKEY, XK_Print, spawn, {.v = flame}},
+  {MODKEY, XK_space, spawn, {.v = dmenu}},
+  {MODKEY, XK_Scroll_Lock, spawn, {.v = slock}},
+  {MODKEY, XK_s, spawn, {.v = dict}},
+  {MODKEY, XK_m, spawn, {.v = mute}},
+  {MODKEY, XK_F1, spawn, {.v = mutevol}},
+  {MODKEY, XK_F2, spawn, {.v = volup}},
+  {MODKEY, XK_F3, spawn, {.v = voldown}},
+  {MODKEY, XK_F6, spawn, {.v = prev}},
+  {MODKEY, XK_F7, spawn, {.v = toggle}},
+  {MODKEY, XK_F8, spawn, {.v = next}},
+  {MODKEY, XK_w, spawn, {.v = web}},
+
 #if KEYMODES_PATCH
     {MODKEY, XK_Escape, setkeymode, {.ui = COMMANDMODE}},
 #endif // KEYMODES_PATCH
@@ -1014,7 +1044,7 @@ static Key keys[] = {
     {MODKEY, XK_Down, focusdir, {.i = 3}},     // down
 #endif                                         // FOCUSDIR_PATCH
 #if SWAPFOCUS_PATCH && PERTAG_PATCH
-    {MODKEY, XK_s, swapfocus, {.i = -1}},
+// {MODKEY, XK_s, swapfocus, {.i = -1}},
 #endif // SWAPFOCUS_PATCH
 #if SWITCHCOL_PATCH
     {MODKEY, XK_v, switchcol, {0}},
@@ -1034,7 +1064,7 @@ static Key keys[] = {
     {MODKEY | ControlMask, XK_k, pushup, {0}},
 #endif // PUSH_PATCH / PUSH_NO_MASTER_PATCH
     {MODKEY, XK_i, incnmaster, {.i = +1}},
-    {MODKEY, XK_d, incnmaster, {.i = -1}},
+// {MODKEY, XK_d, incnmaster, {.i = -1}},
 #if FLEXTILE_DELUXE_LAYOUT
     {MODKEY | ControlMask, XK_i, incnstack, {.i = +1}},
     {MODKEY | ControlMask, XK_u, incnstack, {.i = -1}},
@@ -1088,7 +1118,7 @@ static Key keys[] = {
      updateinset,
      {.v = &default_inset}},
 #endif // INSETS_PATCH
-    {MODKEY, XK_Return, zoom, {0}},
+       // {MODKEY, XK_Return, zoom, {0}},
 #if VANITYGAPS_PATCH
     {MODKEY | Mod4Mask, XK_u, incrgaps, {.i = +1}},
     {MODKEY | Mod4Mask | ShiftMask, XK_u, incrgaps, {.i = -1}},
@@ -1143,8 +1173,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_F5, xrdb, {.v = NULL}},
 #endif // XRDB_PATCH
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
-    {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},
-    {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
+// {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},
+// {MODKEY, XK_m, setlayout, {.v = &layouts[2]}},
 #if COLUMNS_LAYOUT
     {MODKEY, XK_c, setlayout, {.v = &layouts[3]}},
 #endif // COLUMNS_LAYOUT
@@ -1186,7 +1216,7 @@ static Key keys[] = {
      mirrorlayout,
      {0}}, /* flextile, flip master and stack areas */
 #endif     // FLEXTILE_DELUXE_LAYOUT
-    {MODKEY, XK_space, setlayout, {0}},
+    // {MODKEY, XK_space, setlayout, {0}},
     {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
 #if MAXIMIZE_PATCH
     {MODKEY | ControlMask | ShiftMask, XK_h, togglehorizontalmax, {0}},
@@ -1227,13 +1257,13 @@ static Key keys[] = {
     {MODKEY, XK_0, view, {.ui = ~SPTAGMASK}},
     {MODKEY | ShiftMask, XK_0, tag, {.ui = ~SPTAGMASK}},
 #else
-    {MODKEY, XK_0, view, {.ui = ~0}},
-    {MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
+// {MODKEY, XK_0, view, {.ui = ~0}},
+// {MODKEY | ShiftMask, XK_0, tag, {.ui = ~0}},
 #endif // SCRATCHPAD_ALT_1_PATCH
-    {MODKEY, XK_comma, focusmon, {.i = -1}},
-    {MODKEY, XK_period, focusmon, {.i = +1}},
-    {MODKEY | ShiftMask, XK_comma, tagmon, {.i = -1}},
-    {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
+       // {MODKEY, XK_comma, focusmon, {.i = -1}},
+       // {MODKEY, XK_period, focusmon, {.i = +1}},
+       // {MODKEY | ShiftMask, XK_comma, tagmon, {.i = -1}},
+       // {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
 #if FOCUSADJACENTTAG_PATCH
     {MODKEY,
      XK_Left,
@@ -1568,9 +1598,9 @@ static Button buttons[] = {
     {ClkClientWin, MODKEY | ShiftMask, Button1, dragmfact, {0}},
 #endif // DRAGMFACT_PATCH
     {ClkTagBar, 0, Button1, view, {0}},
-    {ClkTagBar, 0, Button3, toggleview, {0}},
-    {ClkTagBar, MODKEY, Button1, tag, {0}},
-    {ClkTagBar, MODKEY, Button3, toggletag, {0}},
+// {ClkTagBar, 0, Button3, toggleview, {0}},
+// {ClkTagBar, MODKEY, Button1, tag, {0}},
+// {ClkTagBar, MODKEY, Button3, toggletag, {0}},
 #if TAB_PATCH
     {ClkTabBar, 0, Button1, focuswin, {0}},
 #endif // TAB_PATCH
